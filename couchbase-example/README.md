@@ -19,7 +19,7 @@ cd src
 python app.py
 ```
 
-Once done, go to [Verifying the Application](#verify-the-application)
+Once done, go to [Verifying the Application](#verifying-the-application) to verify the results.
 
 #### REST API using Couchbase Capella in Python using Flask
 
