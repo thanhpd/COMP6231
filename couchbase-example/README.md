@@ -5,17 +5,17 @@
 For details regarding the codebase, scroll past this section.
 
 ```sh
-# Install dependencies
+# Make sure to go inside the /src folder first
 cd src
+
+# Install dependencies
 python -m pip install -r requirements.txt
 
 # Run using Docker
-cd src
 docker build -t couchbase-flask-quickstart .
 docker run -it --env-file .env -p 8080:8080 couchbase-flask-quickstart
 
 # Run directly
-cd src
 python app.py
 ```
 
