@@ -42,7 +42,7 @@
               return;
           }
 
-          fetch(`http://3.12.241.93:5000/get-recommendations-by-name/${movieName}`)
+          fetch(`http://18.189.7.113/get-recommendations-by-name/${movieName}`)
               .then(response => response.json())
               .then(data => {
                   const recommendationsDiv = document.getElementById('recommendations');

@@ -4,7 +4,7 @@ from flask_cors import CORS  # Import CORS
 app = Flask(__name__)
 
 # Enable CORS for all routes (allow cross-origin requests from any domain)
-CORS(app, resources={r"/*": {"origins": "http://3.12.241.93"}})
+CORS(app)
 
 # Example movie data with ratings
 movies_data = [
@@ -44,4 +44,4 @@ def get_recommendations(movieName):
 
 if __name__ == '__main__':
     # Run on port 5000 with debug mode for easy troubleshooting
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(host='0.0.0.0', port=5000)
