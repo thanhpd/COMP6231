@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Recommendations</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        h1 {
+            color: #4CAF50;
+        }
+        #movieName {
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Movie Recommendations</h1>
+
+    <label for="movieName">Enter Movie Name:</label>
+    <input type="text" id="movieName" placeholder="e.g. Inception">
+    <button onclick="getRecommendations()">Get Recommendations</button>
+
+    <script>
+        function getRecommendations() {
+            const movieName = document.getElementById('movieName').value.trim();
+            if (!movieName) {
+                alert("Please enter a movie name.");
+                return;
+            }
+            
+            // Redirect to recommendation.html with the movie name as a query parameter
+            window.location.href = `recommendation.html?movieName=${encodeURIComponent(movieName)}`;
+        }
+    </script>
+
+</body>
+</html>

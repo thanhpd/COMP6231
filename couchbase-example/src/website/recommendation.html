@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="#">Movie Recommendation</a>
+      
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+          <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Category <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Movie List</a>
+            </li>
+          </ul>
+        </div>
+    </nav>
+
+    <div id="recommendations" class="container mt-4">
+      <!-- Recommended movies will be displayed here -->
+    </div>
+
+    <script>
+      // Function to get the movie name from URL
+      function getMovieNameFromURL() {
+          const urlParams = new URLSearchParams(window.location.search);
+          return urlParams.get('movieName');
+      }
+
+      function getRecommendations() {
+          const movieName = getMovieNameFromURL();  // Get movie name from URL query parameter
+          
+          if (!movieName) {
+              alert("No movie name provided in the URL.");
+              return;
+          }
+
+          fetch(`http://18.189.7.113/get-recommendations-by-name/${movieName}`)
+              .then(response => response.json())
+              .then(data => {
+                  const recommendationsDiv = document.getElementById('recommendations');
+                  recommendationsDiv.innerHTML = ""; // Clear previous results
+
+                  if (data.error) {
+                      recommendationsDiv.innerHTML = `<p class="alert alert-danger">${data.error}</p>`;
+                  } else {
+                      recommendationsDiv.innerHTML = `<h3>Top 5 Recommendations for "${movieName}":</h3>`;
+                      data.recommendedMovies.forEach(movie => {
+                          const movieDiv = document.createElement('div');
+                          movieDiv.className = 'recommendation p-3 mb-3 bg-light rounded';
+                          movieDiv.innerHTML = `<h5>${movie.movie}</h5><p>Rating: ${movie.rating}</p>`;
+                          recommendationsDiv.appendChild(movieDiv);
+                      });
+                  }
+              })
+              .catch(error => {
+                  console.error("Error fetching data:", error);
+                  document.getElementById('recommendations').innerHTML = `<p class="alert alert-danger">There was an error fetching the recommendations. Please try again later.</p>`;
+              });
+      }
+
+      // Call the function to fetch recommendations when page loads
+      window.onload = getRecommendations;
+    </script>
+  </body>
+</html>
