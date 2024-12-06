@@ -1,10 +1,7 @@
-from flask import Flask, jsonify, request
-from flask_cors import CORS  # Import CORS
+from flask import Flask, jsonify
+from dbconnector import CouchbaseClient
 
 app = Flask(__name__)
-
-# Enable CORS for all routes (allow cross-origin requests from any domain)
-CORS(app)
 
 # Example movie data with ratings
 movies_data = [
@@ -41,6 +38,16 @@ def get_recommendations(movieName):
 
     # Return the recommended movies in JSON format
     return jsonify({"movieName": movieName, "recommendedMovies": top_5_recommendations})
+
+@app.route('/get-autosuggestions/<string:query>', methods=['GET'])
+def get_autosuggestions(query):
+    cbClient = CouchbaseClient()
+    cbClient.init_app()
+    # Get the top 5 movie names that match the query
+    top_5_movies = cbClient.get_autosuggestion_by_name(query)
+
+    # Return the top 5 movie names in JSON format
+    return jsonify({"query": query, "autosuggestions": top_5_movies})
 
 if __name__ == '__main__':
     # Run on port 5000 with debug mode for easy troubleshooting
