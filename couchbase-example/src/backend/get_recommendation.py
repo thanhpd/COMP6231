@@ -1,11 +1,12 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
+from flask_cors import CORS
 from dbconnector import CouchbaseClient
 
 app = Flask(__name__)
-
+CORS(app)
 # Example movie data with ratings
 movies_data = [
-    {"movie": "Inception", "rating": 8.8},
+    {"movie": "Inception (2010)", "rating": 8.8},
     {"movie": "Interstellar", "rating": 8.6},
     {"movie": "The Dark Knight", "rating": 9.0},
     {"movie": "The Prestige", "rating": 8.5},
@@ -39,16 +40,22 @@ def get_recommendations(movieName):
     # Return the recommended movies in JSON format
     return jsonify({"movieName": movieName, "recommendedMovies": top_5_recommendations})
 
+
 @app.route('/get-autosuggestions/<string:query>', methods=['GET'])
 def get_autosuggestions(query):
-    cbClient = CouchbaseClient()
-    cbClient.init_app()
-    # Get the top 5 movie names that match the query
-    top_5_movies = cbClient.get_autosuggestion_by_name(query)
+    try:
+        cbClient = CouchbaseClient()
+        cbClient.init_app()
 
-    # Return the top 5 movie names in JSON format
-    return jsonify({"query": query, "autosuggestions": top_5_movies})
+        # Get autosuggestions from Couchbase
+        top_5_movies = cbClient.get_autosuggestion_by_name(query)
+
+        # Return suggestions as JSON
+        return jsonify({"query": query, "autosuggestions": top_5_movies}), 200
+    except Exception as e:
+        print(f"Error in get_autosuggestions: {e}")  # Add detailed logging
+        return jsonify({"error": "An error occurred while fetching autosuggestions.", "details": str(e)}), 500
 
 if __name__ == '__main__':
     # Run on port 5000 with debug mode for easy troubleshooting
-    app.run(host='0.0.0.0', port=5000)
+    app.run(host='0.0.0.0', port=6001)

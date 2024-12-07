@@ -14,10 +14,7 @@
         <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
           <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item active">
-              <a class="nav-link" href="#">Category <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Movie List</a>
+                <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
             </li>
           </ul>
         </div>
@@ -42,7 +39,7 @@
               return;
           }
 
-          fetch(`http://localhost:5000/get-recommendations-by-name/${movieName}`)
+          fetch(`http://localhost:6001/get-recommendations-by-name/${movieName}`)
               .then(response => response.json())
               .then(data => {
                   const recommendationsDiv = document.getElementById('recommendations');
