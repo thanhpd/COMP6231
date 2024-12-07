@@ -1,0 +1,101 @@
+timeStamp,elapsed,label,responseCode,responseMessage,threadName,dataType,success,failureMessage,bytes,sentBytes,grpThreads,allThreads,URL,Latency,IdleTime,Connect
+1733548858788,124,HTTP Request,200,OK,Thread Group 1-3,text,true,,573,206,4,4,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/Interstellar,124,0,75
+1733548858725,187,HTTP Request,404,NOT FOUND,Thread Group 1-1,text,false,,242,203,4,4,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/movieName,187,0,135
+1733548858725,187,HTTP Request,200,OK,Thread Group 1-2,text,true,,582,203,4,4,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/Inception,187,0,140
+1733548858886,71,HTTP Request,200,OK,Thread Group 1-4,text,true,,583,213,4,4,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/The%20Dark%20Knight,71,0,34
+1733548858929,32,HTTP Request,200,OK,Thread Group 1-1,text,true,,576,206,4,4,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/The%20Matrix,32,0,0
+1733548858928,38,HTTP Request,200,OK,Thread Group 1-3,text,true,,573,208,4,4,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/The%20Prestige,38,0,0
+1733548858929,37,HTTP Request,200,OK,Thread Group 1-2,text,true,,578,201,4,4,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/Memento,37,0,0
+1733548858961,31,HTTP Request,200,OK,Thread Group 1-1,text,true,,578,210,5,5,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/Shutter%20Island,31,0,0
+1733548858958,36,HTTP Request,200,OK,Thread Group 1-4,text,true,,583,209,5,5,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/The%20Godfather,36,0,0
+1733548858968,35,HTTP Request,200,OK,Thread Group 1-3,text,true,,573,203,5,5,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/Gladiator,35,0,0
+1733548858968,38,HTTP Request,200,OK,Thread Group 1-2,text,true,,582,206,5,5,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/Fight%20Club,38,0,0
+1733548858993,33,HTTP Request,200,OK,Thread Group 1-1,text,true,,582,203,5,5,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/Inception,33,0,0
+1733548858995,35,HTTP Request,200,OK,Thread Group 1-4,text,true,,573,206,5,5,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/Interstellar,35,0,0
+1733548859003,35,HTTP Request,200,OK,Thread Group 1-3,text,true,,583,213,5,5,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/The%20Dark%20Knight,35,0,0
+1733548859007,37,HTTP Request,200,OK,Thread Group 1-2,text,true,,573,208,5,5,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/The%20Prestige,37,0,0
+1733548859027,31,HTTP Request,200,OK,Thread Group 1-1,text,true,,578,201,5,5,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/Memento,31,0,0
+1733548858991,69,HTTP Request,404,NOT FOUND,Thread Group 1-5,text,false,,242,203,5,5,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/movieName,69,0,34
+1733548859030,36,HTTP Request,200,OK,Thread Group 1-4,text,true,,576,206,5,5,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/The%20Matrix,36,0,0
+1733548859038,34,HTTP Request,200,OK,Thread Group 1-3,text,true,,583,209,5,5,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/The%20Godfather,34,0,0
+1733548859045,37,HTTP Request,200,OK,Thread Group 1-2,text,true,,578,210,6,6,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/Shutter%20Island,37,0,0
+1733548859059,33,HTTP Request,200,OK,Thread Group 1-1,text,true,,573,203,6,6,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/Gladiator,33,0,0
+1733548859061,33,HTTP Request,200,OK,Thread Group 1-5,text,true,,582,206,6,6,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/Fight%20Club,33,0,0
+1733548859067,36,HTTP Request,404,NOT FOUND,Thread Group 1-4,text,false,,242,203,6,6,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/movieName,36,0,0
+1733548859073,36,HTTP Request,200,OK,Thread Group 1-3,text,true,,582,203,6,6,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/Inception,36,0,0
+1733548859082,38,HTTP Request,200,OK,Thread Group 1-2,text,true,,583,213,6,6,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/The%20Dark%20Knight,38,0,0
+1733548859093,36,HTTP Request,200,OK,Thread Group 1-1,text,true,,573,208,6,6,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/The%20Prestige,36,0,0
+1733548859095,35,HTTP Request,200,OK,Thread Group 1-5,text,true,,578,201,6,6,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/Memento,35,0,0
+1733548859104,36,HTTP Request,200,OK,Thread Group 1-4,text,true,,576,206,6,6,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/The%20Matrix,36,0,0
+1733548859109,35,HTTP Request,200,OK,Thread Group 1-3,text,true,,583,209,6,6,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/The%20Godfather,34,0,0
+1733548859082,62,HTTP Request,200,OK,Thread Group 1-6,text,true,,573,206,6,6,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/Interstellar,62,0,30
+1733548859121,39,HTTP Request,200,OK,Thread Group 1-2,text,true,,578,210,6,6,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/Shutter%20Island,39,0,0
+1733548859133,32,HTTP Request,200,OK,Thread Group 1-1,text,true,,582,206,6,6,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/Fight%20Club,32,0,0
+1733548859133,35,HTTP Request,200,OK,Thread Group 1-5,text,true,,573,203,6,6,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/Gladiator,35,0,0
+1733548859144,37,HTTP Request,200,OK,Thread Group 1-6,text,true,,573,206,7,7,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/Interstellar,36,0,0
+1733548859141,41,HTTP Request,404,NOT FOUND,Thread Group 1-4,text,false,,242,203,7,7,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/movieName,41,0,0
+1733548859144,40,HTTP Request,200,OK,Thread Group 1-3,text,true,,582,203,7,7,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/Inception,40,0,0
+1733548859162,41,HTTP Request,200,OK,Thread Group 1-2,text,true,,583,213,7,7,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/The%20Dark%20Knight,41,0,0
+1733548859168,35,HTTP Request,200,OK,Thread Group 1-5,text,true,,578,201,7,7,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/Memento,35,0,0
+1733548859166,37,HTTP Request,200,OK,Thread Group 1-1,text,true,,573,208,7,7,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/The%20Prestige,37,0,0
+1733548859181,31,HTTP Request,200,OK,Thread Group 1-6,text,true,,583,209,7,7,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/The%20Godfather,31,0,0
+1733548859183,37,HTTP Request,200,OK,Thread Group 1-4,text,true,,578,210,7,7,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/Shutter%20Island,37,0,0
+1733548859185,35,HTTP Request,200,OK,Thread Group 1-3,text,true,,573,203,7,7,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/Gladiator,35,0,0
+1733548859222,54,HTTP Request,200,OK,Thread Group 1-3,text,true,,573,208,7,7,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/The%20Prestige,49,0,0
+1733548859221,55,HTTP Request,200,OK,Thread Group 1-4,text,true,,583,213,7,7,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/The%20Dark%20Knight,50,0,0
+1733548859204,72,HTTP Request,404,NOT FOUND,Thread Group 1-5,text,false,,242,203,7,7,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/movieName,67,0,0
+1733548859183,93,HTTP Request,200,OK,Thread Group 1-7,text,true,,576,206,7,7,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/The%20Matrix,88,0,35
+1733548859204,72,HTTP Request,200,OK,Thread Group 1-2,text,true,,582,206,7,7,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/Fight%20Club,67,0,0
+1733548859216,60,HTTP Request,200,OK,Thread Group 1-6,text,true,,573,206,7,7,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/Interstellar,55,0,0
+1733548859204,72,HTTP Request,200,OK,Thread Group 1-1,text,true,,582,203,7,7,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/Inception,67,0,0
+1733548859283,37,HTTP Request,200,OK,Thread Group 1-6,text,true,,573,203,6,6,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/Gladiator,37,0,0
+1733548859283,41,HTTP Request,200,OK,Thread Group 1-7,text,true,,583,209,6,6,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/The%20Godfather,41,0,0
+1733548859283,41,HTTP Request,200,OK,Thread Group 1-4,text,true,,578,201,6,6,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/Memento,41,0,0
+1733548859283,44,HTTP Request,200,OK,Thread Group 1-5,text,true,,576,206,5,5,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/The%20Matrix,44,0,0
+1733548859283,46,HTTP Request,200,OK,Thread Group 1-2,text,true,,578,210,5,5,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/Shutter%20Island,46,0,0
+1733548859321,34,HTTP Request,404,NOT FOUND,Thread Group 1-6,text,false,,242,203,4,4,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/movieName,34,0,0
+1733548859291,67,HTTP Request,200,OK,Thread Group 1-8,text,true,,582,206,4,4,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/Fight%20Club,67,0,33
+1733548859324,38,HTTP Request,200,OK,Thread Group 1-7,text,true,,582,203,4,4,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/Inception,38,0,0
+1733548859327,35,HTTP Request,200,OK,Thread Group 1-5,text,true,,573,206,4,4,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/Interstellar,35,0,0
+1733548859355,33,HTTP Request,200,OK,Thread Group 1-6,text,true,,583,213,5,5,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/The%20Dark%20Knight,33,0,0
+1733548859359,32,HTTP Request,200,OK,Thread Group 1-8,text,true,,573,208,5,5,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/The%20Prestige,31,0,0
+1733548859362,37,HTTP Request,200,OK,Thread Group 1-5,text,true,,576,206,5,5,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/The%20Matrix,37,0,0
+1733548859362,38,HTTP Request,200,OK,Thread Group 1-7,text,true,,578,201,5,5,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/Memento,38,0,0
+1733548859389,33,HTTP Request,200,OK,Thread Group 1-6,text,true,,578,210,5,5,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/Shutter%20Island,33,0,0
+1733548859391,33,HTTP Request,200,OK,Thread Group 1-8,text,true,,573,203,5,5,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/Gladiator,33,0,0
+1733548859399,35,HTTP Request,200,OK,Thread Group 1-5,text,true,,582,206,5,5,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/Fight%20Club,35,0,0
+1733548859401,35,HTTP Request,404,NOT FOUND,Thread Group 1-7,text,false,,242,203,4,4,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/movieName,35,0,0
+1733548859427,38,HTTP Request,200,OK,Thread Group 1-8,text,true,,573,206,4,4,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/Interstellar,38,0,0
+1733548859386,79,HTTP Request,200,OK,Thread Group 1-9,text,true,,583,209,4,4,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/The%20Godfather,79,0,34
+1733548859427,38,HTTP Request,200,OK,Thread Group 1-6,text,true,,582,203,4,4,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/Inception,38,0,0
+1733548859436,39,HTTP Request,200,OK,Thread Group 1-7,text,true,,583,213,4,4,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/The%20Dark%20Knight,39,0,0
+1733548859466,35,HTTP Request,200,OK,Thread Group 1-6,text,true,,578,201,5,5,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/Memento,35,0,0
+1733548859466,35,HTTP Request,200,OK,Thread Group 1-8,text,true,,576,206,5,5,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/The%20Matrix,35,0,0
+1733548859466,37,HTTP Request,200,OK,Thread Group 1-9,text,true,,573,208,4,4,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/The%20Prestige,37,0,0
+1733548859475,38,HTTP Request,200,OK,Thread Group 1-7,text,true,,583,209,4,4,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/The%20Godfather,38,0,0
+1733548859502,31,HTTP Request,200,OK,Thread Group 1-8,text,true,,573,203,4,4,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/Gladiator,31,0,0
+1733548859504,39,HTTP Request,200,OK,Thread Group 1-9,text,true,,582,206,4,4,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/Fight%20Club,39,0,0
+1733548859482,66,HTTP Request,200,OK,Thread Group 1-10,text,true,,578,210,4,4,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/Shutter%20Island,66,0,31
+1733548859515,36,HTTP Request,404,NOT FOUND,Thread Group 1-7,text,false,,242,203,4,4,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/movieName,36,0,0
+1733548859534,35,HTTP Request,200,OK,Thread Group 1-8,text,true,,582,203,4,4,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/Inception,35,0,0
+1733548859548,31,HTTP Request,200,OK,Thread Group 1-10,text,true,,583,213,4,4,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/The%20Dark%20Knight,31,0,0
+1733548859543,37,HTTP Request,200,OK,Thread Group 1-9,text,true,,573,206,4,4,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/Interstellar,37,0,0
+1733548859551,38,HTTP Request,200,OK,Thread Group 1-7,text,true,,573,208,4,4,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/The%20Prestige,37,0,0
+1733548859569,32,HTTP Request,200,OK,Thread Group 1-8,text,true,,578,201,4,4,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/Memento,32,0,0
+1733548859580,35,HTTP Request,200,OK,Thread Group 1-10,text,true,,576,206,4,4,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/The%20Matrix,35,0,0
+1733548859580,38,HTTP Request,200,OK,Thread Group 1-9,text,true,,583,209,4,4,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/The%20Godfather,38,0,0
+1733548859590,37,HTTP Request,200,OK,Thread Group 1-7,text,true,,578,210,4,4,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/Shutter%20Island,37,0,0
+1733548859605,37,HTTP Request,200,OK,Thread Group 1-8,text,true,,573,203,3,3,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/Gladiator,37,0,0
+1733548859617,33,HTTP Request,200,OK,Thread Group 1-10,text,true,,582,206,3,3,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/Fight%20Club,33,0,0
+1733548859619,38,HTTP Request,404,NOT FOUND,Thread Group 1-9,text,false,,242,203,3,3,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/movieName,38,0,0
+1733548859642,34,HTTP Request,200,OK,Thread Group 1-8,text,true,,582,203,3,3,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/Inception,34,0,0
+1733548859651,34,HTTP Request,200,OK,Thread Group 1-10,text,true,,573,206,2,2,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/Interstellar,34,0,0
+1733548859658,36,HTTP Request,200,OK,Thread Group 1-9,text,true,,583,213,2,2,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/The%20Dark%20Knight,36,0,0
+1733548859689,35,HTTP Request,200,OK,Thread Group 1-10,text,true,,573,208,2,2,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/The%20Prestige,35,0,0
+1733548859694,39,HTTP Request,200,OK,Thread Group 1-9,text,true,,578,201,2,2,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/Memento,39,0,0
+1733548859724,34,HTTP Request,200,OK,Thread Group 1-10,text,true,,576,206,2,2,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/The%20Matrix,34,0,0
+1733548859733,37,HTTP Request,200,OK,Thread Group 1-9,text,true,,583,209,2,2,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/The%20Godfather,37,0,0
+1733548859759,33,HTTP Request,200,OK,Thread Group 1-10,text,true,,578,210,2,2,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/Shutter%20Island,33,0,0
+1733548859770,38,HTTP Request,200,OK,Thread Group 1-9,text,true,,573,203,2,2,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/Gladiator,38,0,0
+1733548859792,35,HTTP Request,200,OK,Thread Group 1-10,text,true,,582,206,1,1,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/Fight%20Club,35,0,0
+1733548859829,32,HTTP Request,404,NOT FOUND,Thread Group 1-10,text,false,,242,203,1,1,http://Test-loadbalancer-1945611393.us-east-2.elb.amazonaws.com:6001/get-recommendations-by-name/movieName,31,0,0
