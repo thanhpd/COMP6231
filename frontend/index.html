@@ -1,55 +1,155 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Movie Recommendations</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            padding: 20px;
-        }
-        h1 {
-            color: #4CAF50;
-        }
-        #movieName {
-            padding: 10px;
-            margin: 10px 0;
-            font-size: 16px;
-        }
-        button {
-            padding: 10px 20px;
-            font-size: 16px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #45a049;
-        }
-    </style>
-</head>
-<body>
-
-    <h1>Movie Recommendations</h1>
-
-    <label for="movieName">Enter Movie Name:</label>
-    <input type="text" id="movieName" placeholder="e.g. Inception">
-    <button onclick="getRecommendations()">Get Recommendations</button>
-
-    <script>
-        function getRecommendations() {
-            const movieName = document.getElementById('movieName').value.trim();
-            if (!movieName) {
-                alert("Please enter a movie name.");
-                return;
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Movie Recommendations</title>
+        <!-- Bootstrap 4 or 5 CDN -->
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                padding: 20px;
+                background-color: #f8f9fa;
             }
-            
-            // Redirect to recommendation.html with the movie name as a query parameter
-            window.location.href = `recommendation.html?movieName=${encodeURIComponent(movieName)}`;
-        }
-    </script>
+            h1 {
+                color: #4CAF50;
+                margin-bottom: 30px;
+                text-align: center;
+            }
+            .input-group {
+                position: relative;
+            }
+            .list-group {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                z-index: 10;
+                max-height: 200px;
+                overflow-y: auto;
+                border-radius: 0.25rem;
+            }
+            .list-group-item {
+                cursor: pointer;
+            }
+            .list-group-item:hover {
+                background-color: #f1f1f1;
+            }
+        </style>
+    </head>
+    <body>
 
-</body>
+        <h1>Movie Recommendations</h1>
+
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="form-group">
+                        <label for="movieName" class="font-weight-bold">Enter Movie Name:</label>
+                        <div class="input-group">
+                            <!-- Movie Name Input -->
+                            <input type="text" class="form-control" placeholder="Search movies" id="input-url4">
+                            <div class="input-group-append">
+                                <!-- Search Button -->
+                                <button class="btn btn-success" onclick="getRecommendations()">Get Recommendations</button>
+                            </div>
+                        </div>
+                        <!-- Autocomplete List -->
+                        <div id="autocomplete-list" class="list-group position-absolute"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bootstrap JS and dependencies -->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+        <script>
+            // Store the timeout ID for debounce
+            let debounceTimeout;
+
+            // Debounce function to delay the API request
+            function debounceFetchSuggestions() {
+                const input = document.getElementById('input-url4');
+                const query = input.value.trim();
+                const autocompleteList = document.getElementById('autocomplete-list');
+
+                if (query.length === 0) {
+                    autocompleteList.innerHTML = ''; // Clear suggestions
+                    return;
+                }
+
+                // Clear the previous timeout if the user is typing again
+                clearTimeout(debounceTimeout);
+
+                // Set a new timeout to delay the API call after the user stops typing for 300ms
+                debounceTimeout = setTimeout(() => {
+                    // Fetch autosuggestions from the backend
+                    fetch(`http://localhost:6001/get-autosuggestions/${encodeURIComponent(query)}`)
+                        .then(res => {
+                            if (!res.ok) {
+                                throw new Error('Failed to fetch suggestions');
+                            }
+                            return res.json();
+                        })
+                        .then(data => {
+                            if (data.autosuggestions && data.autosuggestions.length > 0) {
+                                // Populate the autocomplete list
+                                autocompleteList.innerHTML = data.autosuggestions.map(item => `
+                                    <div class="list-group-item" data-value="${item}">
+                                        ${item}
+                                    </div>
+                                `).join('');
+                            } else {
+                                autocompleteList.innerHTML = '<div class="list-group-item">No suggestions found</div>';
+                            }
+                        })
+                        .catch(err => {
+                            console.error('Error fetching autosuggestions:', err);
+                            autocompleteList.innerHTML = '<div class="list-group-item">Error fetching suggestions</div>';
+                        });
+                }, 300); // 300ms debounce delay
+            }
+
+            // Function to handle movie recommendations navigation
+            function getRecommendations() {
+                const movieName = document.getElementById('input-url4').value.trim();
+                if (!movieName) {
+                    alert("Please enter a movie name.");
+                    return;
+                }
+
+                // Redirect to recommendation.html with the movie name as a query parameter
+                window.location.href = `recommendation.html?movieName=${encodeURIComponent(movieName)}`;
+            }
+
+            document.addEventListener('DOMContentLoaded', () => {
+                const input = document.getElementById('input-url4');
+                const autocompleteList = document.getElementById('autocomplete-list');
+
+                // Event listener for input changes to trigger the debounce function
+                input.addEventListener('input', debounceFetchSuggestions);
+
+                // Handle click on an autocomplete item
+                autocompleteList.addEventListener('click', e => {
+                    if (e.target.classList.contains('list-group-item')) {
+                        const selectedValue = e.target.getAttribute('data-value');
+                        input.value = selectedValue;
+                        autocompleteList.innerHTML = ''; // Clear suggestions
+                        console.log('Selected:', selectedValue);
+                    }
+                });
+
+                // Close the list when clicking outside
+                document.addEventListener('click', e => {
+                    if (!autocompleteList.contains(e.target) && e.target !== input) {
+                        autocompleteList.innerHTML = ''; // Clear suggestions
+                    }
+                });
+            });
+        </script>
+    </body>
 </html>
