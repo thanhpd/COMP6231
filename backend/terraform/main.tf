@@ -120,6 +120,7 @@ resource "aws_security_group" "movie_rec_sg" {
 # EC2 Instances
 
 resource "aws_instance" "master" {
+  count                  = 3
   ami                    = "ami-0c7217cdde317cfec"
   instance_type          = "t2.micro"
   subnet_id              = aws_subnet.public_subnet.id
@@ -188,14 +189,15 @@ resource "aws_lb_listener" "movie_rec_listener" {
 
 # Attach EC2 Instances to Target Group
 resource "aws_lb_target_group_attachment" "movie_rec_tg_attachment" {
+  count            = length(aws_instance.master)
   target_group_arn = aws_lb_target_group.movie_rec_tg.arn
-  target_id        = aws_instance.master.id
+  target_id        = aws_instance.master[count.index].id
   port             = 80
 }
 
 # Outputs
 output "master_public_ip" {
-  value = aws_instance.master.public_ip
+  value = aws_instance.master[*].public_ip
 }
 
 output "alb_dns_name" {
