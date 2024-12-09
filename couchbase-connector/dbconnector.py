@@ -144,7 +144,7 @@ class CouchbaseClient(object):
     def get_autosuggestion_by_name(self, query_name: str, limit:int=5) -> list[str]:
         """Get top autosuggestion movie names by name"""
         q_str = 'SELECT t.title FROM `movies` t WHERE LOWER(t.title) LIKE $title LIMIT $limit;'
-        q_res = self.query(q_str, QueryOptions(named_parameters={'title': query_name+'%', 'limit':limit}))
+        q_res = self.query(q_str, QueryOptions(named_parameters={'title': query_name.lower()+'%', 'limit':limit}))
         results = list(map(lambda x: x['title'],list(q_res)))
         return results
 
