@@ -23,10 +23,10 @@ sudo usermod -a -G docker $USER
 sudo systemctl enable docker
 
 # Clone the repository THIS MUST BE CHANGED (REPOSITORY MADE PUBLIC)
-sudo git clone https://github.com/parsa-mre/dist-recommender-simple /app
+sudo git clone https://github.com/thanhpd/COMP6231.git /app
 
 # Change to app directory
-cd /app
+cd /app/backend
 
 # Create environment file
 sudo cat > .env << EOF
