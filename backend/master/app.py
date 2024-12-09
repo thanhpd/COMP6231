@@ -1,6 +1,7 @@
 # master/app.py
 import os
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify
+from dbconnector import CouchbaseClient
 
 app = Flask(__name__)
 
@@ -66,6 +67,47 @@ def get_similar_movies(movie_id):
         app.logger.error(f"Error retrieving similar movies: {e}")
         return jsonify({"error": "Internal server error"}), 500
 
+@app.route('/get-recommendations-by-name/<string:movieName>', methods=['GET'])
+def get_recommendations(movieName):
+    try:
+        cbClient = CouchbaseClient()
+        cbClient.init_app()
+
+        # Get recommendations from Couchbase
+        movie_docs = cbClient.get_movie_docs_by_name(movieName)
+        if (len(movie_docs) > 0):
+            movie_doc_id = movie_docs[0]['movieId']
+
+            recommendation_results = cbClient.get_document('results', str(movie_doc_id)).value[:10]
+            movie_ids = [str(item["movieId"]) for item in recommendation_results]
+
+            movie_docs = cbClient.get_movie_docs_by_id(movie_ids)
+            for item in recommendation_results:
+                item['title'] = movie_docs[str(item['movieId'])]
+            return recommendation_results
+        else:
+            return []
+    except Exception as e:
+        app.logger.error(f"Error retrieving similar movies: {e}")
+        return jsonify({"error": "Internal server error"}), 500
+
+    # Return the recommended movies in JSON format
+    return jsonify({"movieName": movieName, "recommendedMovies": top_5_recommendations})
+
+@app.route('/get-autosuggestions/<string:query>', methods=['GET'])
+def get_autosuggestions(query):
+    try:
+        cbClient = CouchbaseClient()
+        cbClient.init_app()
+
+        # Get autosuggestions from Couchbase
+        top_5_movies = cbClient.get_autosuggestion_by_name(query)
+
+        # Return suggestions as JSON
+        return jsonify({"query": query, "autosuggestions": top_5_movies}), 200
+    except Exception as e:
+        app.logger.error(f"Error in get_autosuggestions: {e}")  # Add detailed logging
+        return jsonify({"error": "An error occurred while fetching autosuggestions.", "details": str(e)}), 500
 
 @app.route("/health", methods=["GET"])
 def health_check():
