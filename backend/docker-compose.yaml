@@ -1,0 +1,14 @@
+version: "3.8"
+
+services:
+    master:
+        build: ./master
+        ports:
+            - "80:80"
+        environment:
+            - REDIS_URL=${REDIS_URL}
+            - GUNICORN_WORKERS=3
+            - GUNICORN_THREADS=2
+            - GUNICORN_TIMEOUT=120
+            - GUNICORN_WORKER_CLASS=gevent
+        restart: always

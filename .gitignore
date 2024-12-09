@@ -1,4 +1,5 @@
-
+.DS_Store
+*/.DS_Store
 omnia.pem
 /jmeter-test-script/results/report/sbadmin2-1.0.7/bower_components
 /jmeter-test-script/results/report/sbadmin2-1.0.7/less
