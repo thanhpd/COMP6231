@@ -1,41 +1,22 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify
 from flask_cors import CORS
 from dbconnector import CouchbaseClient
 
 app = Flask(__name__)
 CORS(app)
-# Example movie data with ratings
-movies_data = [
-    {"movie": "Inception (2010)", "rating": 8.8},
-    {"movie": "Interstellar", "rating": 8.6},
-    {"movie": "The Dark Knight", "rating": 9.0},
-    {"movie": "The Prestige", "rating": 8.5},
-    {"movie": "Memento", "rating": 8.4},
-    {"movie": "The Matrix", "rating": 8.7},
-    {"movie": "The Godfather", "rating": 9.2},
-    {"movie": "Shutter Island", "rating": 8.1},
-    {"movie": "Gladiator", "rating": 8.5},
-    {"movie": "Fight Club", "rating": 8.8}
-]
 
 # Example endpoint
 @app.route('/get-recommendations-by-name/<string:movieName>', methods=['GET'])
 def get_recommendations(movieName):
-    # Find the movie by name
-    selected_movie = next((movie for movie in movies_data if movie['movie'].lower() == movieName.lower()), None)
+    try:
+        cbClient = CouchbaseClient()
+        cbClient.init_app()
 
-    if selected_movie is None:
-        return jsonify({"error": "Movie not found"}), 404
-
-    # Calculate the absolute difference between ratings and the selected movie's rating
-    selected_rating = selected_movie['rating']
-    recommendations = sorted(
-        (movie for movie in movies_data if movie['movie'].lower() != movieName.lower()),
-        key=lambda movie: abs(movie['rating'] - selected_rating)
-    )
-
-    # Get the top 5 similar rated movies
-    top_5_recommendations = recommendations[:5]
+        # Get recommendations from Couchbase
+        top_5_recommendations = cbClient.get_recommendations(movieName)
+    except Exception as e:
+        print(f"Error in get_recommendations: {e}")
+        return jsonify({"error": "An error occurred while fetching recommendations.", "details": str(e)}), 500
 
     # Return the recommended movies in JSON format
     return jsonify({"movieName": movieName, "recommendedMovies": top_5_recommendations})

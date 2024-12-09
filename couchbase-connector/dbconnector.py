@@ -154,3 +154,34 @@ class CouchbaseClient(object):
         q_res = self.query(q_str, QueryOptions(named_parameters={'size': size, 'offset':offset}))
         results = list(q_res)
         return results
+
+    def get_movie_docs_by_name(self, name:str) -> dict:
+        """Get movie document by name"""
+        q_str = 'SELECT t.* FROM `movies` t WHERE LOWER(t.title) = $title;'
+        q_res = self.query(q_str, QueryOptions(named_parameters={'title': name.lower()}))
+        results = list(q_res)
+        return results
+
+    def get_movie_docs_by_id(self, movie_ids:list[int]) -> dict:
+        """Get movie document by id"""
+        q_str = 'SELECT META().id, t.title FROM `movies` t WHERE META().id IN $movie_ids;'
+        q_res = self.query(q_str, QueryOptions(named_parameters={'movie_ids': movie_ids}))
+        list_results = list(q_res)
+        results = {item['id']: item['title'] for item in list_results}
+        return results
+
+    def get_recommendations(self, movieName: str) -> list[dict]:
+        # Return the recommended movies in JSON format
+        movie_docs = self.get_movie_docs_by_name(movieName)
+        if (len(movie_docs) > 0):
+            movie_doc_id = movie_docs[0]['movieId']
+
+            recommendation_results = self.get_document('results', str(movie_doc_id)).value[:20]
+            movie_ids = [str(item["movieId"]) for item in recommendation_results]
+
+            movie_docs = self.get_movie_docs_by_id(movie_ids)
+            for item in recommendation_results:
+                item['title'] = movie_docs[str(item['movieId'])]
+            return recommendation_results
+        else:
+            return []
