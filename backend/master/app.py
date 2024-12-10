@@ -91,6 +91,8 @@ def get_recommendations(movieName):
             # Add movie titles to each document
             for item in recommendation_results:
                 item['title'] = movie_docs[str(item['movieId'])]
+        else:
+            return jsonify({"error": "Movie not found"}), 404
     except Exception as e:
         app.logger.error(f"Error retrieving similar movies: {e}")
         return jsonify({"error": "Internal server error"}), 500
