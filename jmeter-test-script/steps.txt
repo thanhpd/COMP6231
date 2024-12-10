@@ -2,3 +2,6 @@ Build the Image:
 -- docker build --platform linux/amd64 -t jmeter-test .
 Run the Container:
 -- docker run --rm --platform linux/amd64 -v $(pwd)/results:/jmeter/results jmeter-test
+
+run locally
+./jmeter 

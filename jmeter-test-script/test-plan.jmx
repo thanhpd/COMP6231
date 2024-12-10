@@ -2,16 +2,17 @@
 <jmeterTestPlan version="1.2" properties="5.0" jmeter="5.6.3">
   <hashTree>
     <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="CSV test">
-      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments"
-        guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
-        <collectionProp name="Arguments.arguments" />
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+        <collectionProp name="Arguments.arguments"/>
       </elementProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
     </TestPlan>
     <hashTree>
       <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV Data Set Config">
         <stringProp name="delimiter">,</stringProp>
         <stringProp name="fileEncoding"></stringProp>
-        <stringProp name="filename">/jmeter/movie.csv</stringProp>
+        <stringProp name="filename">/Users/air/Documents/GitHub/DSD-Project/Project-DSD/COMP6231/jmeter-test-script/movie.csv</stringProp>
         <boolProp name="ignoreFirstLine">true</boolProp>
         <boolProp name="quotedData">false</boolProp>
         <boolProp name="recycle">true</boolProp>
@@ -19,21 +20,19 @@
         <boolProp name="stopThread">true</boolProp>
         <stringProp name="variableNames">movieName</stringProp>
       </CSVDataSet>
-      <hashTree />
+      <hashTree/>
       <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Thread Group">
         <intProp name="ThreadGroup.num_threads">10</intProp>
         <intProp name="ThreadGroup.ramp_time">1</intProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
-        <elementProp name="ThreadGroup.main_controller" elementType="LoopController"
-          guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller">
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller">
           <stringProp name="LoopController.loops">10</stringProp>
           <boolProp name="LoopController.continue_forever">false</boolProp>
         </elementProp>
       </ThreadGroup>
       <hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy"
-          testname="HTTP Request">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HTTP Request">
           <stringProp name="HTTPSampler.domain">movie-rec-alb-144669575.us-east-1.elb.amazonaws.com</stringProp>
           <stringProp name="HTTPSampler.port">80</stringProp>
           <stringProp name="HTTPSampler.path">/get-recommendations-by-name/${movieName}</stringProp>
@@ -41,14 +40,12 @@
           <stringProp name="HTTPSampler.method">GET</stringProp>
           <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
           <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
-          <elementProp name="HTTPsampler.Arguments" elementType="Arguments"
-            guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
-            <collectionProp name="Arguments.arguments" />
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+            <collectionProp name="Arguments.arguments"/>
           </elementProp>
         </HTTPSamplerProxy>
-        <hashTree />
-        <ResultCollector guiclass="TableVisualizer" testclass="ResultCollector"
-          testname="View Results in Table">
+        <hashTree/>
+        <ResultCollector guiclass="TableVisualizer" testclass="ResultCollector" testname="View Results in Table">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
             <name>saveConfig</name>
@@ -82,9 +79,9 @@
               <connectTime>true</connectTime>
             </value>
           </objProp>
-          <stringProp name="filename">/jmeter/results/results.jtl</stringProp>
+          <stringProp name="filename">/Users/air/Documents/GitHub/DSD-Project/Project-DSD/COMP6231/jmeter-test-script/results/results.jtl</stringProp>
         </ResultCollector>
-        <hashTree />
+        <hashTree/>
       </hashTree>
     </hashTree>
   </hashTree>
