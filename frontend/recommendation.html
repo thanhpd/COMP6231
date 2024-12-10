@@ -39,7 +39,7 @@
               return;
           }
 
-          fetch(`http://localhost:6001/get-recommendations-by-name/${movieName}`)
+          fetch(`http://ec2-34-206-64-229.compute-1.amazonaws.com:80/get-recommendations-by-name/${movieName}`)
               .then(response => response.json())
               .then(data => {
                   const recommendationsDiv = document.getElementById('recommendations');

@@ -88,7 +88,7 @@
                 // Set a new timeout to delay the API call after the user stops typing for 300ms
                 debounceTimeout = setTimeout(() => {
                     // Fetch autosuggestions from the backend
-                    fetch(`http://localhost:6001/get-autosuggestions/${encodeURIComponent(query)}`)
+                    fetch(`http://ec2-34-206-64-229.compute-1.amazonaws.com:80/get-autosuggestions/${encodeURIComponent(query)}`)
                         .then(res => {
                             if (!res.ok) {
                                 throw new Error('Failed to fetch suggestions');
