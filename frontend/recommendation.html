@@ -38,8 +38,8 @@
               alert("No movie name provided in the URL.");
               return;
           }
-
-          fetch(`http://ec2-34-206-64-229.compute-1.amazonaws.com:80/get-recommendations-by-name/${movieName}`)
+          //const movieName = "Toy Story (1995)";
+          fetch(`http://movie-rec-alb-144669575.us-east-1.elb.amazonaws.com/get-recommendations-by-name/${encodeURIComponent(movieName)}`)
               .then(response => response.json())
               .then(data => {
                   const recommendationsDiv = document.getElementById('recommendations');
