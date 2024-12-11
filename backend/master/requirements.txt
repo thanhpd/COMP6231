@@ -1,6 +1,6 @@
 couchbase==4.3.3
-Flask==3.1.0
 Flask_Cors==5.0.0
+flask==3.0.3
 gunicorn==22.0.0
 werkzeug==3.0.2
 requests==2.32.0
