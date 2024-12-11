@@ -8,40 +8,49 @@
     <title>Movie Recommendation</title>
     <style>
       .node {
-        fill: #69b3a2;
+        fill: #127895;
         stroke: #555;
         stroke-width: 1.5px;
+        transition: all 0.3s ease; /* Smooth transition for the hover effect */
       }
+
+      .node:hover {
+        filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.5)); /* Shadow effect on hover */
+        cursor: pointer; /* Change cursor to pointer */
+      }
+
       .link {
         fill: none;
         stroke: #aaa;
         stroke-opacity: 0.6;
         stroke-width: 1.5px;
       }
+
       text {
-        font: 10px sans-serif;
+        font: 11px sans-serif;
         pointer-events: none;
       }
     </style>
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <a class="navbar-brand" href="#">Movie Recommendation</a>
-      
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-          <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-            <li class="nav-item active">
-                <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
-            </li>
-          </ul>
-        </div>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand" href="#">Movie Recommendation</a>
+
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+          <li class="nav-item active">
+            <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+          </li>
+        </ul>
+      </div>
     </nav>
 
     <div id="recommendations" class="container mt-4">
       <h3>Movie Recommendations</h3>
+      <div id="movieTitle"></div> <!-- Movie title will be displayed here -->
       <svg width="800" height="600"></svg>
     </div>
 
@@ -68,6 +77,7 @@
 
       // Function to display recommendations using D3.js
       function displayRecommendations(data) {
+        document.getElementById('movieTitle').textContent = `Recommendations for: ${data.movieName}`;
         const width = 800;
         const height = 600;
 
@@ -86,8 +96,8 @@
         }));
 
         const simulation = d3.forceSimulation(nodes)
-          .force("link", d3.forceLink(links).id(d => d.id).distance(100))
-          .force("charge", d3.forceManyBody().strength(-300))
+          .force("link", d3.forceLink(links).id(d => d.id).distance(200))
+          .force("charge", d3.forceManyBody().strength(-500))
           .force("center", d3.forceCenter(width / 2, height / 2));
 
         const link = svg.append("g")
@@ -104,7 +114,16 @@
           .enter().append("circle")
           .attr("class", "node")
           .attr("r", 10)
-          .call(drag(simulation));
+          .call(drag(simulation))
+          .on("click", function(event, d) {
+            // Update the URL with the selected movie's name
+            const movieName = d.id;
+            const newUrl = `?movieName=${encodeURIComponent(movieName)}`;
+            window.history.pushState({ path: newUrl }, "", newUrl);
+            
+            // Reload the page to fetch recommendations for the selected movie
+            window.location.reload();
+          });
 
         const label = svg.append("g")
           .attr("class", "labels")
