@@ -2,8 +2,10 @@
 import os
 from flask import Flask, jsonify
 from dbconnector import CouchbaseClient
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
 # CouchDB Connection
 # COUCHDB_URL = os.environ.get("COUCHDB_URL", "http://localhost:5984")
