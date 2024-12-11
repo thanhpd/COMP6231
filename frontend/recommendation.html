@@ -4,8 +4,25 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
+    <script src="https://d3js.org/d3.v7.min.js"></script>
     <title>Movie Recommendation</title>
+    <style>
+      .node {
+        fill: #69b3a2;
+        stroke: #555;
+        stroke-width: 1.5px;
+      }
+      .link {
+        fill: none;
+        stroke: #aaa;
+        stroke-opacity: 0.6;
+        stroke-width: 1.5px;
+      }
+      text {
+        font: 10px sans-serif;
+        pointer-events: none;
+      }
+    </style>
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -24,7 +41,8 @@
     </nav>
 
     <div id="recommendations" class="container mt-4">
-      <!-- Recommended movies will be displayed here -->
+      <h3>Movie Recommendations</h3>
+      <svg width="800" height="600"></svg>
     </div>
 
     <script>
@@ -48,17 +66,92 @@
           });
       }
 
-      // Function to display recommendations
+      // Function to display recommendations using D3.js
       function displayRecommendations(data) {
-        const recommendationsDiv = document.getElementById('recommendations');
-        recommendationsDiv.innerHTML = `<h3>Top Recommendations for "${data.movieName}":</h3>`;
+        const width = 800;
+        const height = 600;
 
-        data.recommendedMovies.forEach(movie => {
-          const movieDiv = document.createElement('div');
-          movieDiv.className = 'recommendation p-3 mb-3 bg-light rounded';
-          movieDiv.innerHTML = `<h5>${movie.title}</h5><p>Average Score: ${movie.avg_score.toFixed(2)}</p>`;
-          recommendationsDiv.appendChild(movieDiv);
+        const svg = d3.select("svg");
+        svg.selectAll("*").remove(); // Clear previous content
+
+        const nodes = [
+          { id: data.movieName, group: 1 },
+          ...data.recommendedMovies.map(movie => ({ id: movie.title, group: 2 }))
+        ];
+
+        const links = data.recommendedMovies.map(movie => ({
+          source: data.movieName,
+          target: movie.title,
+          value: movie.avg_score
+        }));
+
+        const simulation = d3.forceSimulation(nodes)
+          .force("link", d3.forceLink(links).id(d => d.id).distance(100))
+          .force("charge", d3.forceManyBody().strength(-300))
+          .force("center", d3.forceCenter(width / 2, height / 2));
+
+        const link = svg.append("g")
+          .attr("class", "links")
+          .selectAll("line")
+          .data(links)
+          .enter().append("line")
+          .attr("class", "link");
+
+        const node = svg.append("g")
+          .attr("class", "nodes")
+          .selectAll("circle")
+          .data(nodes)
+          .enter().append("circle")
+          .attr("class", "node")
+          .attr("r", 10)
+          .call(drag(simulation));
+
+        const label = svg.append("g")
+          .attr("class", "labels")
+          .selectAll("text")
+          .data(nodes)
+          .enter().append("text")
+          .text(d => d.id);
+
+        simulation.on("tick", () => {
+          link
+            .attr("x1", d => d.source.x)
+            .attr("y1", d => d.source.y)
+            .attr("x2", d => d.target.x)
+            .attr("y2", d => d.target.y);
+
+          node
+            .attr("cx", d => d.x)
+            .attr("cy", d => d.y);
+
+          label
+            .attr("x", d => d.x + 12)
+            .attr("y", d => d.y + 3);
         });
+
+        function drag(simulation) {
+          function dragstarted(event, d) {
+            if (!event.active) simulation.alphaTarget(0.3).restart();
+            d.fx = d.x;
+            d.fy = d.y;
+          }
+
+          function dragged(event, d) {
+            d.fx = event.x;
+            d.fy = event.y;
+          }
+
+          function dragended(event, d) {
+            if (!event.active) simulation.alphaTarget(0);
+            d.fx = null;
+            d.fy = null;
+          }
+
+          return d3.drag()
+            .on("start", dragstarted)
+            .on("drag", dragged)
+            .on("end", dragended);
+        }
       }
 
       // Function to get the movie name from the URL
