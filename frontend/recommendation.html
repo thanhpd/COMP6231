@@ -71,7 +71,7 @@
           })
           .catch(error => {
             console.error("Error fetching data:", error);
-            document.getElementById('recommendations').innerHTML = `<p class="alert alert-danger">There was an error fetching the recommendations. Please try again later.</p>`;
+            document.getElementById('recommendations').innerHTML = `<p class="alert alert-danger">Error fetching data: ${error}</p>`;
           });
       }
 
